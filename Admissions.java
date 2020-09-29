@@ -80,6 +80,10 @@ public class Admissions{
         if ((elite > 1 || solid > 2 || last == "Padjen") && nope == 0){
             System.out.println("You've been accepted!");
         }
+        else{
+            System.out.println("Sorry you haven't been accepted.");
+            System.out.println("Reasons: ");
+        }
         // System.out.println("\n" + elite);
         // System.out.println(solid);
         // System.out.println(accept);

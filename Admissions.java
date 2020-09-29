@@ -20,8 +20,11 @@ public class Admissions{
     
         int elite = 0;
         int solid = 0;
-        int accept = 0;
         int nope = 0;
+        int SATfail = 0;
+        int Classfail = 0;
+        int Awardfail = 0;
+        Boolean Residencefail = false;
 
         // SAT CHECKS
         if (SAT >= 1500){
@@ -30,11 +33,9 @@ public class Admissions{
         else if (SAT <= 1499 && SAT >= 1400){
             solid += 1;
         }
-        else if (SAT <= 1399 && SAT >= 1200){
-            accept += 1;
-        }
         else{
             nope += 1;
+            SATfail = 1;
         }
 
         // CLASS RANK CHECKS
@@ -44,11 +45,9 @@ public class Admissions{
         else if (ClassRank >= 90){
             solid += 1;
         }
-        else if (ClassRank >= 85){
-            accept += 1;
-        }
         else{
             nope +=1;
+            Classfail = 1;
         }
 
         // AWARD CHECKS
@@ -58,31 +57,44 @@ public class Admissions{
         else if (Awards == 9 || Awards == 8){
             solid += 1;
         }
-        else if (Awards >= 3 && Awards <= 7){
-            accept +=1;
-        }
         else{
             nope += 1;
+            Awardfail = 1;
         }
 
         // RESIDENCE CHECKS
-        if (Residence == "Colorado"){
+        if (Residence.equals("Florida")){
+            nope += 1;
+            Residencefail = true;
+        }
+        else if (Residence.equals("Colorado")){
             elite += 1;
         }
-        else if (Residence == "Florida"){
-            nope += 1;
-        }
-        else{
-            accept +=1;
-        }
+        
 
-
+        // ACCEPTANCE CHECK
         if ((elite > 1 || solid > 2 || last == "Padjen") && nope == 0){
             System.out.println("You've been accepted!");
         }
         else{
             System.out.println("Sorry you haven't been accepted.");
-            System.out.println("Reasons: ");
+            System.out.println("Reasons:\n");
+            if (SATfail == 1){
+                System.out.println("SAT Score");
+            }
+
+            if (Classfail == 1){
+                System.out.println("Class Rank");
+            }
+
+            if (Awardfail == 1){
+                System.out.println("Not Enough Awards");
+            }
+
+            if (Residencefail){
+                System.out.println("You live in Florida");
+            }
+            
         }
         // System.out.println("\n" + elite);
         // System.out.println(solid);
